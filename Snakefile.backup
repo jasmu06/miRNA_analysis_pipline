@@ -1,0 +1,169 @@
+configfile: "config/config.yml"
+# ========================
+#  FINAL OUTPUT TARGETS
+# ========================
+rule all:
+    input:
+    "star_index/genomeParameters.txt",  # Specific file that indicates index completion
+    expand("aligned/{sample}.Aligned.sortedByCoord.out.bam",
+          sample=config["samples"]["Tumor"] + config["samples"]["Control"]),
+    "counts/counts.txt",
+    config["params"]["deseq_dir"] + "/results/DEG_results.csv",  # Specific file
+    config["params"]["deseq_dir"] + "/pca_plot.png"
+
+# ========================
+#  REFERENCE INDEXING
+# ========================
+rule star_genome_index:
+    input:
+    fasta="genome.fa",
+    gtf="annotations.gtf"
+    output:
+    directory("star_index")
+    log:
+    "logs/star_index.log"
+    threads: 8
+    params:
+    extra: "--genomeSAindexNbases 14"
+    shell:
+    """STAR --runMode genomeGenerate \
+    --genomeDir {output} \
+    --genomeFastaFiles {input.fasta} \
+    --sjdbGTFfile {input.gtf} \
+    --sjdbOverhang 100 \
+    --runThreadN {threads} \
+    {params.extra} > {log} 2>&1"""
+# ========================
+#  READ PROCESSING
+# ========================
+rule trim_adapters:
+    input:
+    "data/raw_fastq/{sample}.fastq"  # Exact path to your files
+    output:
+    "trimmed/{sample}.fq.gz"  # Output will be compressed
+    params:
+    adapter = config["params"]["adapter_seq"],
+    quality = config["params"]["trim_quality"]
+    log:
+    "logs/trim/{sample}.log"
+    shell:
+    """
+    rule trim_adapters:
+    input:
+    "data/raw_fastq/{sample}.fastq"
+    output:
+    "trimmed/{sample}_trimmed.fq.gz"  # Match Trim Galore's output
+    params:
+    adapter = config["params"]["adapter_seq"],
+    quality = config["params"]["trim_quality"]
+    log:
+    "logs/trim/{sample}.log"
+    shell:
+    """
+    trim_galore \
+        --adapter {params.adapter} \
+        --quality {params.quality} \
+        --gzip \
+        --output_dir trimmed/ \
+        {input} > {log} 2>&1
+    """
+
+
+
+# ========================
+#  ALIGNMENT
+# ========================
+rule align_reads:
+    input:
+    fq = "trimmed/{sample}.fq.gz",
+    idx = "star_index"
+    output:
+    bam = "aligned/{sample}.Aligned.sortedByCoord.out.bam",
+    log = "aligned/{sample}.Log.final.out"
+    params:
+    opts = "--outFilterMultimapNmax 10 \
+           --alignSJDBoverhangMin 1 \
+           --outFilterMismatchNmax 1 \
+           --outSAMattributes NH HI NM MD \
+           --quantMode GeneCounts"
+    log:
+    "logs/align/{sample}.log"
+    threads: 8
+    shell:
+    """
+    STAR --genomeDir {input.idx} \
+    --readFilesIn {input.fq} \
+    --readFilesCommand zcat \
+    --outFileNamePrefix aligned/{wildcards.sample}. \
+    --outSAMtype BAM SortedByCoordinate \
+    --runThreadN {threads} \
+    {params.opts} > {log} 2>&1
+    """
+
+# ========================
+#  QUANTIFICATION
+# ========================
+rule count_features:
+    input:
+    bams = expand("aligned/{sample}.Aligned.sortedByCoord.out.bam",
+             sample=config["samples"]["Tumor"] + config["samples"]["Control"]),
+    gtf = config["reference"]["gtf"]
+    output:
+    "counts/mirna_counts.txt"
+    params:
+    extra = "-t miRNA -g gene_id -O"  # Count miRNA features specifically
+    log:
+    "logs/counting.log"
+    shell:
+    """
+    featureCounts \
+    -a {input.gtf} \
+    -o {output} \
+    {params.extra} \
+    {input.bams} > {log} 2>&1
+    """
+
+# ========================
+#  DIFFERENTIAL ANALYSIS
+# ========================
+
+rule run_deseq:
+    input:
+    counts = "counts/mirna_counts.txt",
+    meta = "samples_meta.csv"
+    output:
+    deg_results = directory(config["params"]["deseq_dir"] + "/results"),
+    pca_plot = config["params"]["deseq_dir"] + "/pca_plot.png"
+    params:
+    script = config["tools"]["deseq2"],
+    outdir = config["params"]["deseq_dir"]
+    log:
+    "logs/deseq.log"
+    shell:
+    """
+    mkdir -p {params.outdir}
+    Rscript {params.script} \
+        {input.counts} \
+        {input.meta} \
+        {params.outdir} > {log} 2>&1
+    """
+
+
+# ========================
+#  METADATA GENERATION
+# ========================
+rule generate_metadata:
+    output:
+    "samples_meta.csv"
+    run:
+    with open(output[0], 'w') as f:
+        f.write("sample,condition\n")
+        for condition in ["Tumor", "Control"]:
+        for sample in config["samples"][condition]:
+            f.write(f"{sample},{condition}\n")
+
+rule test:
+    output: "test.txt"
+    shell:
+    "echo 'Test' > {output}"
+

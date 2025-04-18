@@ -1,0 +1,4 @@
+The flag 'directory' used in rule all is only valid for outputs, not inputs.
+KeyError in file /Users/jasmu/tumor_mirna/Snakefile, line 14:
+'gtf'
+  File "/Users/jasmu/tumor_mirna/Snakefile", line 14, in <module>

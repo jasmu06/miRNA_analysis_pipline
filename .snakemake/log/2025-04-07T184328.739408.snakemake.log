@@ -1,0 +1,12 @@
+Building DAG of jobs...
+MissingInputException in rule align_bowtie2 in file /Users/jasmu/tumor_mirna/Snakefile, line 24:
+Missing input files for rule align_bowtie2:
+    output: results/Bowtie2/Tumor1_Aligned.sortedByCoord.out.bam
+    wildcards: sample=Tumor1
+    affected files:
+        references/bowtie2_index.2.bt2
+        references/bowtie2_index.rev.1.bt2
+        references/bowtie2_index.rev.2.bt2
+        references/bowtie2_index.1.bt2
+        references/bowtie2_index.3.bt2
+        references/bowtie2_index.4.bt2

@@ -1,0 +1,33 @@
+
+# Sample information ---
+# Sample information
+samples:
+  Tumor:
+    - Tumor1
+    - Tumor2
+    - Tumor3
+  Control:
+    - Control1
+    - Control2
+    - Control3
+
+# Reference files
+reference: "/Users/jasmu/tumor_mirna/references/hsa.gtf"
+gtf: "/Users/jasmu/tumor_mirna/references/hsa.gtf"
+bowtie2_index: "references/bowtie2_index/genome"
+
+# Tools
+tools:
+  trim_galore: "trim_galore"
+  star: "STAR"
+  featurecounts: "featureCounts"
+  deseq2: "scripts/deseq2.R"
+
+# Parameters
+params:
+  adapter_seq: "TGGAATTCTCGG"
+  trim_quality: 20  
+  star_sjdbOverhang: 49
+  deseq_dir: "results/deseq"
+  extra_star_params: "--sjdbOverhang 100 --outSAMtype BAM SortedByCoordinate"  # Extra STAR parameters
+  

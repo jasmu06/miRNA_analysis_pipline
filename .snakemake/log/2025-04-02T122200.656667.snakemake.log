@@ -1,0 +1,28 @@
+The flag 'directory' used in rule all is only valid for outputs, not inputs.
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job               count
+--------------  -------
+align_reads           4
+all                   1
+count_features        6
+total                11
+
+Select jobs to execute...
+
+[Wed Apr  2 12:22:01 2025]
+rule count_features:
+    input: results/STAR/Tumor2_Aligned.sortedByCoord.out.bam
+    output: results/featureCounts/Tumor2.counts.txt
+    jobid: 15
+    reason: Missing output files: results/featureCounts/Tumor2.counts.txt
+    wildcards: sample=Tumor2
+    threads: 4
+    resources: tmpdir=/var/folders/_b/1v1j8kq531344z5ds828zm6c0000gn/T
+
+RuleException in rule count_features in file /Users/jasmu/tumor_mirna/Snakefile, line 57:
+NameError: The name "'gtf'" is unknown in this context. Please make sure that you defined that variable. Also note that braces not used for variable access have to be escaped by repeating them, i.e. {{print $1}}, when formatting the following:
+featureCounts -T {threads} -a {config['gtf']} -o {output} {params.extra} {input.bam}

@@ -1,0 +1,10 @@
+*.sam
+*.bam
+*.fastq
+*.fq
+*.vcf
+*.log
+*.tmp
+*.gz
+.DS_Store
+

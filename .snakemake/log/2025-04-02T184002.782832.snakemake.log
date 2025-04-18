@@ -1,0 +1,8 @@
+The flag 'directory' used in rule all is only valid for outputs, not inputs.
+Building DAG of jobs...
+MissingInputException in rule count_features in file /Users/jasmu/tumor_mirna/Snakefile, line 77:
+Missing input files for rule count_features:
+    output: results/featureCounts/Tumor1.counts.txt
+    wildcards: sample=Tumor1
+    affected files:
+        results/STAR/Tumor1_Aligned.sortedByCoord.out.bam

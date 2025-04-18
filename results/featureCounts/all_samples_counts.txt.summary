@@ -1,0 +1,15 @@
+Status	Bowtie2/Control1_Aligned.sortedByCoord.out.bam	Bowtie2/Control2_Aligned.sortedByCoord.out.bam	Bowtie2/Control3_Aligned.sortedByCoord.out.bam	Bowtie2/Tumor1_Aligned.sortedByCoord.out.bam	Bowtie2/Tumor2_Aligned.sortedByCoord.out.bam	Bowtie2/Tumor3_Aligned.sortedByCoord.out.bam
+Assigned	2540	52	49	2054	29	112
+Unassigned_Unmapped	24486080	17192811	17036479	22577969	15021698	17461566
+Unassigned_Read_Type	0	0	0	0	0	0
+Unassigned_Singleton	0	0	0	0	0	0
+Unassigned_MappingQuality	0	0	0	0	0	0
+Unassigned_Chimera	0	0	0	0	0	0
+Unassigned_FragmentLength	0	0	0	0	0	0
+Unassigned_Duplicate	0	0	0	0	0	0
+Unassigned_MultiMapping	0	0	0	0	0	0
+Unassigned_Secondary	0	0	0	0	0	0
+Unassigned_NonSplit	0	0	0	0	0	0
+Unassigned_NoFeatures	2651	51	44	2083	30	101
+Unassigned_Overlapping_Length	0	0	0	0	0	0
+Unassigned_Ambiguity	45	18	50	54	7	76

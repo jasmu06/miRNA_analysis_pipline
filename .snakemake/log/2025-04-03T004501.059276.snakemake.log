@@ -1,0 +1,152 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job               count
+--------------  -------
+align_bowtie2         6
+all                   1
+count_features        6
+total                13
+
+Select jobs to execute...
+
+[Thu Apr  3 00:45:04 2025]
+rule align_bowtie2:
+    input: results/trimmed/Tumor1.fastq.gz, results/results/references/genome/bowtie2_index/genome.1.bt2, results/results/references/genome/bowtie2_index/genome.2.bt2, results/results/references/genome/bowtie2_index/genome.3.bt2, results/results/references/genome/bowtie2_index/genome.4.bt2, results/results/references/genome/bowtie2_index/genome.rev.1.bt2, results/results/references/genome/bowtie2_index/genome.rev.2.bt2
+    output: results/Bowtie2/Tumor1_Aligned.sortedByCoord.out.bam
+    jobid: 7
+    reason: Missing output files: results/Bowtie2/Tumor1_Aligned.sortedByCoord.out.bam
+    wildcards: sample=Tumor1
+    resources: tmpdir=/var/folders/_b/1v1j8kq531344z5ds828zm6c0000gn/T
+
+
+[Thu Apr  3 00:45:04 2025]
+rule align_bowtie2:
+    input: results/trimmed/Tumor2.fastq.gz, results/results/references/genome/bowtie2_index/genome.1.bt2, results/results/references/genome/bowtie2_index/genome.2.bt2, results/results/references/genome/bowtie2_index/genome.3.bt2, results/results/references/genome/bowtie2_index/genome.4.bt2, results/results/references/genome/bowtie2_index/genome.rev.1.bt2, results/results/references/genome/bowtie2_index/genome.rev.2.bt2
+    output: results/Bowtie2/Tumor2_Aligned.sortedByCoord.out.bam
+    jobid: 8
+    reason: Missing output files: results/Bowtie2/Tumor2_Aligned.sortedByCoord.out.bam
+    wildcards: sample=Tumor2
+    resources: tmpdir=/var/folders/_b/1v1j8kq531344z5ds828zm6c0000gn/T
+
+
+[Thu Apr  3 00:45:04 2025]
+rule align_bowtie2:
+    input: results/trimmed/Control1.fastq.gz, results/results/references/genome/bowtie2_index/genome.1.bt2, results/results/references/genome/bowtie2_index/genome.2.bt2, results/results/references/genome/bowtie2_index/genome.3.bt2, results/results/references/genome/bowtie2_index/genome.4.bt2, results/results/references/genome/bowtie2_index/genome.rev.1.bt2, results/results/references/genome/bowtie2_index/genome.rev.2.bt2
+    output: results/Bowtie2/Control1_Aligned.sortedByCoord.out.bam
+    jobid: 10
+    reason: Missing output files: results/Bowtie2/Control1_Aligned.sortedByCoord.out.bam
+    wildcards: sample=Control1
+    resources: tmpdir=/var/folders/_b/1v1j8kq531344z5ds828zm6c0000gn/T
+
+
+[Thu Apr  3 00:45:04 2025]
+rule align_bowtie2:
+    input: results/trimmed/Control3.fastq.gz, results/results/references/genome/bowtie2_index/genome.1.bt2, results/results/references/genome/bowtie2_index/genome.2.bt2, results/results/references/genome/bowtie2_index/genome.3.bt2, results/results/references/genome/bowtie2_index/genome.4.bt2, results/results/references/genome/bowtie2_index/genome.rev.1.bt2, results/results/references/genome/bowtie2_index/genome.rev.2.bt2
+    output: results/Bowtie2/Control3_Aligned.sortedByCoord.out.bam
+    jobid: 12
+    reason: Missing output files: results/Bowtie2/Control3_Aligned.sortedByCoord.out.bam
+    wildcards: sample=Control3
+    resources: tmpdir=/var/folders/_b/1v1j8kq531344z5ds828zm6c0000gn/T
+
+[Thu Apr  3 00:45:04 2025]
+Error in rule align_bowtie2:
+    jobid: 10
+    input: results/trimmed/Control1.fastq.gz, results/results/references/genome/bowtie2_index/genome.1.bt2, results/results/references/genome/bowtie2_index/genome.2.bt2, results/results/references/genome/bowtie2_index/genome.3.bt2, results/results/references/genome/bowtie2_index/genome.4.bt2, results/results/references/genome/bowtie2_index/genome.rev.1.bt2, results/results/references/genome/bowtie2_index/genome.rev.2.bt2
+    output: results/Bowtie2/Control1_Aligned.sortedByCoord.out.bam
+    shell:
+        
+        # Align reads with Bowtie2
+        bowtie2 -x results/references/genome/bowtie2_index/genome                 -U results/trimmed/Control1.fastq.gz                 -S results/Bowtie2/Control1.sam
+
+        # Convert SAM to BAM
+        samtools view -bS results/Bowtie2/Control1.sam > results/Bowtie2/Control1_Aligned.sortedByCoord.out.bam
+
+        # Sort the BAM file (optional)
+        samtools sort results/Bowtie2/Control1_Aligned.sortedByCoord.out.bam -o results/Bowtie2/Control1_Aligned.sortedByCoord.out.bam.sorted
+
+        # Move the sorted BAM file to the desired output location
+        mv results/Bowtie2/Control1_Aligned.sortedByCoord.out.bam.sorted results/Bowtie2/Control1_Aligned.sortedByCoord.out.bam
+
+        # Clean up the temporary SAM file
+        rm results/Bowtie2/Control1.sam
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+[Thu Apr  3 00:45:04 2025]
+Error in rule align_bowtie2:
+    jobid: 12
+    input: results/trimmed/Control3.fastq.gz, results/results/references/genome/bowtie2_index/genome.1.bt2, results/results/references/genome/bowtie2_index/genome.2.bt2, results/results/references/genome/bowtie2_index/genome.3.bt2, results/results/references/genome/bowtie2_index/genome.4.bt2, results/results/references/genome/bowtie2_index/genome.rev.1.bt2, results/results/references/genome/bowtie2_index/genome.rev.2.bt2
+    output: results/Bowtie2/Control3_Aligned.sortedByCoord.out.bam
+    shell:
+        
+        # Align reads with Bowtie2
+        bowtie2 -x results/references/genome/bowtie2_index/genome                 -U results/trimmed/Control3.fastq.gz                 -S results/Bowtie2/Control3.sam
+
+        # Convert SAM to BAM
+        samtools view -bS results/Bowtie2/Control3.sam > results/Bowtie2/Control3_Aligned.sortedByCoord.out.bam
+
+        # Sort the BAM file (optional)
+        samtools sort results/Bowtie2/Control3_Aligned.sortedByCoord.out.bam -o results/Bowtie2/Control3_Aligned.sortedByCoord.out.bam.sorted
+
+        # Move the sorted BAM file to the desired output location
+        mv results/Bowtie2/Control3_Aligned.sortedByCoord.out.bam.sorted results/Bowtie2/Control3_Aligned.sortedByCoord.out.bam
+
+        # Clean up the temporary SAM file
+        rm results/Bowtie2/Control3.sam
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+[Thu Apr  3 00:45:04 2025]
+[Thu Apr  3 00:45:04 2025]
+Error in rule align_bowtie2:
+    jobid: 7
+    input: results/trimmed/Tumor1.fastq.gz, results/results/references/genome/bowtie2_index/genome.1.bt2, results/results/references/genome/bowtie2_index/genome.2.bt2, results/results/references/genome/bowtie2_index/genome.3.bt2, results/results/references/genome/bowtie2_index/genome.4.bt2, results/results/references/genome/bowtie2_index/genome.rev.1.bt2, results/results/references/genome/bowtie2_index/genome.rev.2.bt2
+    output: results/Bowtie2/Tumor1_Aligned.sortedByCoord.out.bam
+    shell:
+        
+        # Align reads with Bowtie2
+        bowtie2 -x results/references/genome/bowtie2_index/genome                 -U results/trimmed/Tumor1.fastq.gz                 -S results/Bowtie2/Tumor1.sam
+
+        # Convert SAM to BAM
+        samtools view -bS results/Bowtie2/Tumor1.sam > results/Bowtie2/Tumor1_Aligned.sortedByCoord.out.bam
+
+        # Sort the BAM file (optional)
+        samtools sort results/Bowtie2/Tumor1_Aligned.sortedByCoord.out.bam -o results/Bowtie2/Tumor1_Aligned.sortedByCoord.out.bam.sorted
+
+        # Move the sorted BAM file to the desired output location
+        mv results/Bowtie2/Tumor1_Aligned.sortedByCoord.out.bam.sorted results/Bowtie2/Tumor1_Aligned.sortedByCoord.out.bam
+
+        # Clean up the temporary SAM file
+        rm results/Bowtie2/Tumor1.sam
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Error in rule align_bowtie2:
+    jobid: 8
+    input: results/trimmed/Tumor2.fastq.gz, results/results/references/genome/bowtie2_index/genome.1.bt2, results/results/references/genome/bowtie2_index/genome.2.bt2, results/results/references/genome/bowtie2_index/genome.3.bt2, results/results/references/genome/bowtie2_index/genome.4.bt2, results/results/references/genome/bowtie2_index/genome.rev.1.bt2, results/results/references/genome/bowtie2_index/genome.rev.2.bt2
+    output: results/Bowtie2/Tumor2_Aligned.sortedByCoord.out.bam
+    shell:
+        
+        # Align reads with Bowtie2
+        bowtie2 -x results/references/genome/bowtie2_index/genome                 -U results/trimmed/Tumor2.fastq.gz                 -S results/Bowtie2/Tumor2.sam
+
+        # Convert SAM to BAM
+        samtools view -bS results/Bowtie2/Tumor2.sam > results/Bowtie2/Tumor2_Aligned.sortedByCoord.out.bam
+
+        # Sort the BAM file (optional)
+        samtools sort results/Bowtie2/Tumor2_Aligned.sortedByCoord.out.bam -o results/Bowtie2/Tumor2_Aligned.sortedByCoord.out.bam.sorted
+
+        # Move the sorted BAM file to the desired output location
+        mv results/Bowtie2/Tumor2_Aligned.sortedByCoord.out.bam.sorted results/Bowtie2/Tumor2_Aligned.sortedByCoord.out.bam
+
+        # Clean up the temporary SAM file
+        rm results/Bowtie2/Tumor2.sam
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2025-04-03T004501.059276.snakemake.log

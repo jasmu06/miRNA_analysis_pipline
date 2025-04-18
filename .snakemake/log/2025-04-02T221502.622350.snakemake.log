@@ -1,0 +1,3 @@
+CreateRuleException in file /Users/jasmu/tumor_mirna/Snakefile, line 52:
+The name align_bowtie2 is already used by another rule
+  File "/Users/jasmu/tumor_mirna/Snakefile", line 52, in <module>
