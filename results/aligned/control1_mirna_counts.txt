@@ -1,0 +1,11 @@
+19710507 *
+1141 hsa-miR-4634
+ 531 hsa-miR-214-3p
+  14 hsa-miR-483-5p
+   8 hsa-miR-3960
+   6 hsa-miR-8485
+   5 hsa-miR-5091
+   3 hsa-miR-6858-5p
+   1 hsa-miR-940
+   1 hsa-miR-874-5p
+   1 hsa-miR-5699-5p

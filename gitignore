@@ -1,10 +1,11 @@
-*.sam
-*.bam
 *.fastq
-*.fq
+*.bam
+*.sam
 *.vcf
-*.log
-*.tmp
 *.gz
-.DS_Store
+*.fasta
+*.fa
+*.log
+*.tsv
+*.csv
 
