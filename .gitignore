@@ -1,1 +1,26 @@
-.DS_Store
+# Raw and trimmed sequencing data
+*.fastq
+*.trimmed
+*.fastqc_trimmed
+
+# Alignment and mapping files
+*.sam
+*.bam
+*.mapped.sam
+*.trimmed.sam
+
+# Genome and annotation files
+*.fasta
+*.fa
+*.GRCh38.fa
+*.hsa.fa
+*.mature.fai
+
+# Compressed files
+*.gz
+
+# Logs and intermediate data
+*.log
+*.data
+
+
