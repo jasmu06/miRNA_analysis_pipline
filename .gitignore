@@ -23,4 +23,9 @@
 *.log
 *.data
 
+# Snakemake cache
+.snakemake/
+
+*.bam
+*.DS_Store
 
