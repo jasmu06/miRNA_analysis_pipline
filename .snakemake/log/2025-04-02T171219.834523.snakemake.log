@@ -1,2 +1,0 @@
-SyntaxError in file /Users/jasmu/tumor_mirna/Snakefile, line 64:
-No rule keywords allowed after run/shell/script/notebook/wrapper/template_engine/cwl in rule align_bowtie2. (Snakefile, line 64)

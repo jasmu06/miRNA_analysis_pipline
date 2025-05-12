@@ -1,6 +1,0 @@
-Building DAG of jobs...
-MissingInputException in rule index_bowtie2 in file /Users/jasmu/tumor_mirna/Snakefile, line 11:
-Missing input files for rule index_bowtie2:
-    output: references/bowtie2_index/hsa.1.bt2, references/bowtie2_index/hsa.2.bt2, references/bowtie2_index/hsa.3.bt2, references/bowtie2_index/hsa.4.bt2, references/bowtie2_index/hsa.rev.1.bt2, references/bowtie2_index/hsa.rev.2.bt2
-    affected files:
-        tumor_mirna/references/hsa.fa

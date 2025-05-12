@@ -1,7 +1,0 @@
-Building DAG of jobs...
-MissingInputException in rule count_features in file /Users/jasmu/tumor_mirna/Snakefile, line 81:
-Missing input files for rule count_features:
-    output: results/featureCounts/Tumor1.counts.txt
-    wildcards: sample=Tumor1
-    affected files:
-        results/Bowtie2/Tumor1_Aligned.sortedByCoord.out.bam

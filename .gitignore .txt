@@ -1,0 +1,14 @@
+*.data
+*.fastq
+*.mapped.sam
+*.trimmed.sam
+*.gz
+*.fasta
+*.fa
+*.log
+*.data
+*.trimmed
+*.fastqc_trimmed
+*.GRCh38.fa
+*.hsa.fa
+*.mature.fa
