@@ -11,7 +11,7 @@ done
 
 wget ftp://mirbase.org/pub/mirbase/CURRENT/mature.fa.gz
 gunzip mature.fa.gz
-The file was unzip as hsa_mature.fa and process for indexing. Mature miRNA sequences from miRbase and tool Bowtie was carried out.
+The file was unzipped as hsa_mature.fa and process for indexing. Mature miRNA sequences from miRbase and tool Bowtie tool was carried out.
 
 bowtie-build mature_human_miRNA.fa mature_miRNA_index
 
@@ -20,7 +20,7 @@ bowtie-build mature_human_miRNA.fa mature_miRNA_index
 Alignment loop for all samples:
 for sample in tumor1 tumor2 tumor3 control1 control2 control3
 do
-    bowtie -v 1 -S hsa_mature_index trimmed/${sample}.fastqc > aligned/${sample}.sam
+    bowtie -v 1 -S hsa_mature_index trimmed/${sample}.fastq > aligned/${sample}.sam
 done
 
 # extracted maapped alignment

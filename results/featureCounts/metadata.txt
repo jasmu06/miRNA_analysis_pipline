@@ -1,0 +1,7 @@
+SampleID  Condition
+tumor1    Tumor
+tumor2    Tumor
+tumor3    Tumor
+control1  Control
+control2  Control
+control3  Control

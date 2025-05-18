@@ -1,0 +1,7 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	Control1	/Users/jasmu/tumor_mirna/results/fastqc_trimmed/Control1_trimmed_fastqc.zip
+FastQC	all_sections	Control2	/Users/jasmu/tumor_mirna/results/fastqc_trimmed/Control2_trimmed_fastqc.zip
+FastQC	all_sections	Tumor2	/Users/jasmu/tumor_mirna/results/fastqc_trimmed/Tumor2_trimmed_fastqc.zip
+FastQC	all_sections	Tumor1	/Users/jasmu/tumor_mirna/results/fastqc_trimmed/Tumor1_trimmed_fastqc.zip
+FastQC	all_sections	Tumor3	/Users/jasmu/tumor_mirna/results/fastqc_trimmed/Tumor3_trimmed_fastqc.zip
+FastQC	all_sections	Control3	/Users/jasmu/tumor_mirna/results/fastqc_trimmed/Control3_trimmed_fastqc.zip
